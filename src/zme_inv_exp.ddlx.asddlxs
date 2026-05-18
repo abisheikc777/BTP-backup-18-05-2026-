@@ -1,0 +1,72 @@
+@Metadata.layer: #CUSTOMER
+annotate entity Z7AB_CV_INV_EXP
+    with 
+{
+     @UI.facet: [{
+        id:       'Invoice_Exception',
+        purpose:  #STANDARD,
+        label:    'Invoice Exception Details',
+        type:     #IDENTIFICATION_REFERENCE,
+        position: 10
+    }]
+
+    @UI.lineItem: [
+        { position: 10,
+          label: 'Request Id' }
+    ]
+    @UI.selectionField:  [{ position: 10 }]
+    @UI.identification:  [{ label: 'Request ID', position: 10 }]
+    ReqId;
+
+    @UI.selectionField:  [{ position: 20 }]
+    @UI.lineItem:        [{ position: 30, label: 'Company Code' }]
+    @UI.identification:  [{ label: 'Company Code', position: 20 }]
+    CompanyCode;
+
+    @UI.selectionField:  [{ position: 30 }]
+    @UI.lineItem:        [{ position: 40, label: 'Vendor' }, { type: #FOR_ACTION , dataAction: 'approveRequest', label: 'Approve Request', position:30 }]
+    @UI.identification:  [{ label: 'Vendor', position: 30 }]
+    Vendor;
+
+    @UI.lineItem:        [{ position: 50, label: 'Amount' }]
+    @UI.identification:  [{ label: 'Amount', position: 40 }]
+    Amount;
+
+    @UI.lineItem:        [{ position: 60, label: 'Currency' }]
+    @UI.identification:  [{ label: 'Currency', position: 50 }]
+    CurrencyKey;
+
+    @UI.lineItem:        [{ position: 70, label: 'Invoice Date' }]
+    @UI.identification:  [{ label: 'Invoice Date', position: 60 }]
+    InvoiceDate;
+
+    @UI.lineItem:        [{ position: 80, label: 'Status' }]
+    @UI.identification:  [{ label: 'Status', position: 70 }]
+    Status;
+
+    @UI.lineItem:        [{ position: 90, label: 'Financial Doc Number' }]
+    @UI.identification:  [{ label: 'Financial Doc Number', position: 80 }]
+  
+    FiDocNo;
+
+    @UI.lineItem:        [{ position: 100, label: 'Fiscal Year' }]
+    @UI.identification:  [{ label: 'Fiscal Year', position: 90 }]
+    FiscalYear;
+
+    @UI.lineItem:        [{ position: 110, label: 'Risk Level' }]
+    @UI.identification:  [{ label: 'Risk Level', position: 100 }]
+    RiskLevel;
+
+    @UI.lineItem:        [{ exclude: true }]
+    Createdby;
+
+    @UI.lineItem:        [{ exclude: true }]
+    Createdon;
+
+    @UI.lineItem:        [{ exclude: true }]
+    Changedby;
+
+    @UI.lineItem:        [{ exclude: true }]
+    Changedon;
+    
+}

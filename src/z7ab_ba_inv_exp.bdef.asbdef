@@ -1,0 +1,37 @@
+    managed implementation in class zbp_7ab_ba_inv_exp unique;
+strict ( 2 );
+
+define behavior for Z7AB_BA_INV_EXP //alias <alias_name>
+persistent table z7ab_tab_inv_exp
+lock master
+authorization master ( instance )
+//etag master
+{
+  create ( authorization : global );
+  update;
+  delete;
+//  field ( readonly ) ReqId;
+  field (readonly: update) RiskLevel;
+
+  determination setStatus on save { field ReqId; create;}
+  determination setRisk   on save { field Amount; create;}
+  side effects { field Amount affects field RiskLevel; }
+  action approveRequest;
+
+  mapping for z7ab_tab_inv_exp {
+  ReqId         = req_id;
+  CompanyCode   = company_code;
+  Vendor        = vendor;
+  Amount        = amount;
+  CurrencyKey   = currency_key;
+  InvoiceDate   = invoice_date;
+  Status        = status;
+  FiDocNo       = fi_doc_no;
+  RiskLevel     = risk_level;
+  FiscalYear    = fiscal_year;
+  Createdby     = createdby;
+  Createdon     = createdon;
+  Changedby     = changedby;
+  Changedon     = changedon;
+  }
+}

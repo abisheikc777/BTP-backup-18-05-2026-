@@ -1,0 +1,14 @@
+managed implementation in class zbp_7ab_ts_inv_exp unique;
+strict ( 2 );
+
+define behavior for Z7AB_TS_INV_EXP //alias <alias_name>
+persistent table z7ab_tab_inv_exp
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) ReqId;
+}

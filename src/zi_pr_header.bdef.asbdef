@@ -1,0 +1,53 @@
+unmanaged implementation in class zbp_i_pr_header unique;
+strict ( 2 );
+
+define behavior for ZI_PR_Header //alias <alias_name>
+//late numbering
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) PrId, RefNo;
+  association _pr_items { create; }
+  mapping for zpurchreq_header{
+  PrId = pr_id;
+  RefNo = ref_no;
+  Requestor = requestor;
+  TotalAmt = total_amt;
+  Currency = currency;
+  CreatedBy = created_by;
+  CreatedOn = created_on;
+  ChangedBy = changed_by;
+  ChangedOn = changed_on;
+  }
+}
+
+define behavior for ZI_PR_Item //alias <alias_name>
+//late numbering
+lock dependent by _pr_header
+authorization dependent by _pr_header
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) PrId, ItemNo, RefNo;
+  association _pr_header;
+  mapping for zpurchreq_item{
+  PrId       = pr_id;
+  ItemNo     = item_no;
+  RefNo     = ref_no;
+  Material   = material;
+  Quantity   = quantity;
+  Uom        = uom;
+  Price      = price;
+  Currency   = currency;
+  ItemAmount = item_amount;
+  CreatedBy  = created_by;
+  CreatedOn  = created_on;
+  ChangedBy  = changed_by;
+  ChangedOn  = changed_on;
+  }
+}

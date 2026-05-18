@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition for Purchase Requisition'
+define service ZSD_Purchase_Requisition {
+  expose ZC_PR_Header;
+  expose ZC_PR_Item;
+}

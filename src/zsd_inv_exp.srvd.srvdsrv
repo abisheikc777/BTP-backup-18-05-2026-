@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Binding - Invoice Exception'
+define service ZSD_INV_EXP {
+  expose Z7AB_CV_INV_EXP;
+}

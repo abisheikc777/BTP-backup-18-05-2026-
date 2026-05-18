@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition - Invoice Exception - test'
+define service ZSD_INV_EXP_TST {
+  expose Z7AB_TS_INV_EXP;
+}

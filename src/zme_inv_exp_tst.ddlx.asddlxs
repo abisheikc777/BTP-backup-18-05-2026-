@@ -1,0 +1,46 @@
+@Metadata.layer: #CUSTOMER
+annotate entity Z7AB_TS_INV_EXP
+    with 
+{
+    @UI.facet: [{
+        id:       'Invoice_Exception',
+        purpose:  #STANDARD,
+        label:    'Invoice Exception Details',
+        type:     #IDENTIFICATION_REFERENCE,
+        position: 10
+    }]
+    
+    
+    @UI.selectionField: [{ position: 10 }]
+    @UI.lineItem: [{ position: 10 , label: 'Request ID' }]
+    ReqId;
+    @UI.selectionField: [{ position: 20 }]
+    @UI.lineItem: [{ position: 20 , label: 'Company Code' }]
+    CompanyCode;
+    @UI.selectionField: [{ position: 30 }]
+    @UI.lineItem: [{ position: 30 , label: 'Vendor' }]
+    Vendor;
+    @UI.lineItem: [{ position: 40, label: 'Amount' }]
+    Amount;
+    @UI.lineItem: [{ position: 50, label: 'Currency' }]
+    CurrencyKey;
+    @UI.lineItem: [{  position : 60 , label :'Invoice Date'}]
+    InvoiceDate;
+    @UI.lineItem:[{ position : 70 , label : 'Status'}]
+    Status;
+    @UI.lineItem: [{ position : 80 , label :'Finance Document Number' }]
+    FiDocNo;
+    @UI.lineItem: [{ position : 90 , label:'Fiscal Year' }]
+    FiscalYear;
+    @UI.lineItem: [{ position : 100, label: 'Risk Level' }]
+    RiskLevel;
+    @UI.hidden: true
+    Createdby;
+    @UI.hidden: true
+    Createdon;
+    @UI.hidden: true
+    Changedby;
+    @UI.hidden: true
+    Changedon;
+    
+}
