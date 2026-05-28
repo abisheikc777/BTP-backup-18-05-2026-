@@ -1,22 +1,33 @@
-    managed implementation in class zbp_7ab_ba_inv_exp unique;
+managed implementation in class zbp_7ab_ba_inv_exp unique;
 strict ( 2 );
+with draft;
 
 define behavior for Z7AB_BA_INV_EXP //alias <alias_name>
+draft table Z7ABTAB_IN_EXP_D
 persistent table z7ab_tab_inv_exp
-lock master
+lock master total etag Changedon
 authorization master ( instance )
-//etag master
+etag master Changedon
 {
   create ( authorization : global );
   update;
   delete;
-//  field ( readonly ) ReqId;
-  field (readonly: update) RiskLevel;
+  field ( readonly: update ) ReqId;
+  field (readonly) RiskLevel;
+  field( readonly) Status;
 
   determination setStatus on save { field ReqId; create;}
   determination setRisk   on save { field Amount; create;}
   side effects { field Amount affects field RiskLevel; }
-  action approveRequest;
+  action (features : instance)approveRequest result [1] $self;
+
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+
 
   mapping for z7ab_tab_inv_exp {
   ReqId         = req_id;

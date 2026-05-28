@@ -11,9 +11,13 @@ composition [0..*] of ZI_PR_Item as _pr_items
     @Semantics.amount.currencyCode: 'Currency'
     total_amt as TotalAmt,
     currency as Currency,
+    @Semantics.user.createdBy: true
     created_by as CreatedBy,
+    @Semantics.systemDateTime.createdAt: true
     created_on as CreatedOn,
+    @Semantics.user.lastChangedBy: true
     changed_by as ChangedBy,
+    @Semantics.systemDateTime.lastChangedAt: true
     changed_on as ChangedOn,
     _pr_items
 }

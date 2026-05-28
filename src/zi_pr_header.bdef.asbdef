@@ -1,17 +1,27 @@
 unmanaged implementation in class zbp_i_pr_header unique;
 strict ( 2 );
+with draft;
 
 define behavior for ZI_PR_Header //alias <alias_name>
 //late numbering
-lock master
+
+lock master total etag ChangedOn
 authorization master ( instance )
-//etag master <field_name>
+draft table ZPURCHREQ_HD_D
+etag master ChangedOn
 {
   create ( authorization : global );
   update;
   delete;
-  field ( readonly ) PrId, RefNo;
+//  field ( readonly ) PrId, RefNo;
   association _pr_items { create; }
+
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
   mapping for zpurchreq_header{
   PrId = pr_id;
   RefNo = ref_no;
@@ -29,12 +39,17 @@ define behavior for ZI_PR_Item //alias <alias_name>
 //late numbering
 lock dependent by _pr_header
 authorization dependent by _pr_header
-//etag master <field_name>
+draft table ZPURCHREQ_IT_D
+etag master ChangedOn
+
 {
   update;
   delete;
-  field ( readonly ) PrId, ItemNo, RefNo;
+  field ( readonly : update ) ItemNo, PrId, RefNo;
   association _pr_header;
+
+
+
   mapping for zpurchreq_item{
   PrId       = pr_id;
   ItemNo     = item_no;

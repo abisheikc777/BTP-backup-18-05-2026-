@@ -4,11 +4,21 @@ annotate entity ZC_PR_Header
 {
 
     @UI.facet: [{ 
-    id:'Purchase_Requestion',
+    id:'PurchaseRequestion',
     purpose: #STANDARD,
     label: 'Purchase Requestion Details',
     type: #IDENTIFICATION_REFERENCE,
-     position:10 }]
+     position:10 },
+     { 
+       id :'ItemDetails',
+       purpose: #STANDARD,
+       type: #LINEITEM_REFERENCE,
+       label: 'Material Details',
+       position: 20,
+       targetElement: '_pr_items'
+     }]
+     
+     
      
   @UI.selectionField: [{ position:10 }]
     @UI.lineItem: [{ position: 10 , label: 'Purchase Requestion ID' }]
@@ -27,9 +37,9 @@ annotate entity ZC_PR_Header
     @UI.identification: [{ label: 'Total Amount', position: 40}]
     TotalAmt;
     
-    @UI.lineItem: [{ position: 50 , label: 'Currency' }]
-    @UI.identification: [{ label: 'Currency', position: 50}]
+   @UI.hidden: true
     Currency;
-   
     
+    
+     
 }

@@ -16,6 +16,8 @@ CLASS lhc_Z7AB_BA_INV_EXP DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS setStatus FOR DETERMINE ON SAVE
       IMPORTING keys FOR z7ab_ba_inv_exp~setStatus.
+    METHODS get_instance_features FOR INSTANCE FEATURES
+      IMPORTING keys REQUEST requested_features FOR Z7AB_BA_INV_EXP RESULT result.
 
 ENDCLASS.
 
@@ -36,6 +38,20 @@ CLASS lhc_Z7AB_BA_INV_EXP IMPLEMENTATION.
          Status = 'Approved' ) )
        FAILED DATA(lt_failed)
        REPORTED DATA(lt_reported).
+
+       READ ENTITIES OF z7ab_ba_inv_exp IN LOCAL MODE
+    ENTITY z7ab_ba_inv_exp
+    ALL FIELDS WITH
+    CORRESPONDING #( keys )
+    RESULT DATA(lt_result)
+    FAILED DATA(lt_failed_read)
+    REPORTED DATA(lt_reported_read).
+
+  "Step 3 — Return the result to the UI
+  result = VALUE #(
+    FOR ls_result IN lt_result
+    ( %tky   = ls_result-%tky
+      %param = ls_result ) ).
   ENDMETHOD.
 
 
@@ -84,6 +100,21 @@ CLASS lhc_Z7AB_BA_INV_EXP IMPLEMENTATION.
         ) )
        FAILED DATA(lt_failed)
        REPORTED DATA(lt_reported).
+  ENDMETHOD.
+
+  METHOD get_instance_features.
+      READ ENTITIES OF z7ab_ba_inv_exp IN LOCAL MODE
+      ENTITY z7ab_ba_inv_exp
+      FIELDS ( Status ) WITH CORRESPONDING #( keys )
+      RESULT DATA(lt_approved)
+      FAILED DATA(lt_failed).
+
+      result = VALUE #( FOR ls_wa IN lt_approved
+      LET statusval = COND #( WHEN ls_wa-Status = 'Approved'
+                              THEN if_abap_behv=>fc-o-disabled
+                              ELSE if_abap_behv=>fc-o-enabled )
+                              IN ( %tky = ls_wa-%tky
+                                   %action-approveRequest = statusval ) ).
   ENDMETHOD.
 
 ENDCLASS.

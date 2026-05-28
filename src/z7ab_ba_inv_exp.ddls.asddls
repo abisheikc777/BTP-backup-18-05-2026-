@@ -2,6 +2,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Invoice Exception - Basic View'
 @Metadata.ignorePropagatedAnnotations: true
+@Metadata.allowExtensions: true
 define root view entity Z7AB_BA_INV_EXP as select from z7ab_tab_inv_exp
 {
     key req_id as ReqId,

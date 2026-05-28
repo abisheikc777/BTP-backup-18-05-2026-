@@ -3,7 +3,7 @@ annotate entity Z7AB_TS_INV_EXP
     with 
 {
     @UI.facet: [{
-        id:       'Invoice_Exception',
+        id:       'InvoiceException',
         purpose:  #STANDARD,
         label:    'Invoice Exception Details',
         type:     #IDENTIFICATION_REFERENCE,

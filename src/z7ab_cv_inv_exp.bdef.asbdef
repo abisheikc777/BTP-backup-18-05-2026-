@@ -1,5 +1,6 @@
 projection;
 strict ( 2 );
+use draft;
 
 define behavior for Z7AB_CV_INV_EXP //alias <alias_name>
 {
@@ -8,4 +9,14 @@ define behavior for Z7AB_CV_INV_EXP //alias <alias_name>
   use delete;
 
   use action approveRequest;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+
+
+
 }
